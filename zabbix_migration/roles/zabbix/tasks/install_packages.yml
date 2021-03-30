@@ -1,0 +1,42 @@
+---
+- name: リポジトリ登録
+  yum: 
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ repository_rpm  }}"
+  environment: "{{ proxy_env }}"
+
+- name: server側で必要なパッケージのインストール
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ server_packages }}"
+  environment: "{{ proxy_env }}"
+
+- name: phpインストール
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ php_packages }}"
+  environment: "{{ proxy_env }}"
+
+- name: mysqlインストール
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ mysql_packages }}"
+  environment: "{{ proxy_env }}"
+
+- name: zabbixインストール
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ zabbix_packages }}"
+  environment: "{{ proxy_env }}"
+
+#- name: 【Test】プロキシ経由で外部通信
+#  yum:
+#    name: "{{ item }}"
+#    state: latest
+#  with_items: "{{ test_packages }}"
+#  environment: "{{ proxy_env }}"

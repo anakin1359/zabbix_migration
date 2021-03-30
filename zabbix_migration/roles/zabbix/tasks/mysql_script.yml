@@ -1,0 +1,33 @@
+---
+- name: mysql_secure_installation.shの実行
+  script: roles/zabbix/script/mysql_secure_installation.sh
+  register: tool_result_1
+  ignore_errors: true
+
+- name: mysql_init.shの実行
+  script: roles/zabbix/script/mysql_init.sh
+  register: tool_result_2
+  ignore_errors: true
+
+- name: mysql_dbread.shの実行
+  script: roles/zabbix/script/mysql_dbread.sh
+  register: tool_result_3
+  ignore_errors: true
+
+- name: shell 実行結果の確認
+  debug:
+    msg: "{{ item }}"
+  with_items:
+    - "{{ tool_result_1 }}"
+    - "{{ tool_result_2 }}"
+    - "{{ tool_result_3 }}"
+
+- name: mysqld 再起動
+  systemd:
+    name: mysqld.service
+    state: restarted
+
+- name: zabbix-server 再起動
+  systemd:
+    name: zabbix-server.service
+    state: restarted

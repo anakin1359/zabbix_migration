@@ -1,0 +1,69 @@
+# ==============================
+# Hosts
+# ==============================
+[zabbix_test]
+172.xx.xx.xx
+# 172.xx.xx.xx
+# 172.xx.xx.xx
+
+[local_1-zabbix]
+# 192.xx.xx.xx
+
+[local_2-zabbix]
+# 172.xx.xx.xx
+
+[local_3-zabbix]
+# 172.xx.xx.xx
+
+[BIGIP]
+172.xx.xx.xx
+
+# [product_1]
+# 172.xx.xx.xx
+
+# [product_2]
+# 172.xx.xx.xx
+
+# [product_3]
+# 172.xx.xx.xx
+
+# ==============================
+# Children
+# ==============================
+[proxy_local_1:children]
+local_1-zabbix
+
+[proxy_local_2:children]
+local_2-zabbix
+
+[proxy_local_3:children]
+local_3-zabbix
+
+# ==============================
+# Vars
+# ==============================
+# [all:vars]
+# system=
+# ansible_ssh_pass=
+
+[zabbix_test]
+system=sz-zabbix
+ansible_ssh_pass=root
+
+[local_1-zabbix:vars]
+system=sz-zabbix
+ansible_ssh_pass=root
+
+[local_2-zabbix:vars]
+system=oka-zabbix
+ansible_ssh_pass=root
+
+[local_3-zabbix:vars]
+system=oka-zabbix
+ansible_ssh_pass=root
+
+# ==============================
+# trial
+# ==============================
+# [master]
+# 172.xx.xx.xx

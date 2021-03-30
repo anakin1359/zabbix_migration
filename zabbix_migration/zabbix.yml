@@ -1,0 +1,7 @@
+---
+- name: zabbix ver5.0 install
+  hosts: all
+  
+  roles:
+    - zabbix
+

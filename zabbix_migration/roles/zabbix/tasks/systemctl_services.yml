@@ -1,0 +1,24 @@
+---
+- name: httpd 起動/自動起動
+  systemd:
+    name: httpd.service
+    state: started
+    enabled: yes
+
+- name: mysqld 起動/自動起動
+  systemd:
+    name: mysqld.service
+    state: started
+    enabled: yes
+
+- name: zabbix-server 起動/自動起動
+  systemd:
+    name: zabbix-server.service
+    state: started
+    enabled: yes
+
+- name: rh-php72-php-fpm 起動/自動起動
+  systemd:
+    name: rh-php72-php-fpm.service
+    state: started
+    enabled: yes

@@ -1,0 +1,37 @@
+---
+- name: zabbix_フロントエンドパッケージ_有効化設定
+  copy:
+    src: roles/zabbix/files/zabbix.repo
+    dest: /etc/yum.repos.d/zabbix.repo
+    mode: 0644
+
+- name: zabbix_フロントエンドパッケージ_インストール 
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ zabbix_frontend_packages }}"
+  environment: "{{ proxy_env }}"
+
+- name: zabbix_リージョン変更( --> Asia/Tokyo)
+  copy:
+    src: roles/zabbix/files/zabbix.conf
+    dest: /etc/opt/rh/rh-php72/php-fpm.d/zabbix.conf
+    mode: 0644
+
+- name: zabbix_DB-PW設定
+  replace:
+    path: /etc/zabbix/zabbix_server.conf
+    regexp: '^# DBPassword='
+    replace: DBPassword=Zabbix2020#
+
+- name: mysql_native_password 有効化設定
+  replace:
+    path: /etc/my.cnf
+    regexp: '^# default-authentication-plugin=mysql_native_password'
+    replace: default-authentication-plugin=mysql_native_password
+
+- name: zabbix_キャッシュサイズ変更
+  replace:
+    path: /etc/zabbix/zabbix_server.conf
+    regexp: '^# CacheSize=8M'
+    replace: CacheSize=16M

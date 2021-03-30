@@ -1,0 +1,28 @@
+---
+  - name: 環境設定
+    import_tasks: ansible_env.yml
+    tags: [ ansible_env ]
+
+  - name: パッケージインストール
+    import_tasks: install_packages.yml 
+    tags: [ install_packages ]
+
+  - name: zabbix_環境設定
+    import_tasks: zabbix_env.yml
+    tags: [ zabbix_env ]
+
+  - name: サービス起動/自動起動停止
+    import_tasks: systemctl_services.yml
+    tags: [ systemctl_services ]
+
+  - name: mysql_shell実行
+    import_tasks: mysql_script.yml
+    tags: [ mysql_script ]
+
+  - name: OS再起動
+    import_tasks: os_reboot.yml
+    tags: [ os_reboot ]
+
+#  - name: proxy経由 外部通信 実行テスト
+#    import_tasks: proxy_test.yml
+#    tags: [ proxy_test ]

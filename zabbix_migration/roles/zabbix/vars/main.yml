@@ -1,0 +1,58 @@
+---
+server_packages:
+  - epel-release
+  - libselinux-python
+  - centos-release-scl
+  - zlib
+  - expect
+
+repository_rpm:
+  - http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+  - http://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+  - http://repo.zabbix.com/zabbix/5.0/rhel/7/x86_64/zabbix-release-5.0-1.el7.noarch.rpm
+
+php_packages:
+  - php72
+  - php72-php-gd
+  - php72-php-bcmath
+#  - php-ctype
+#  - php-libXML
+#  - php-xmlreader
+#  - php-xmlwriter
+  - php72-php-xml
+#  - php-session
+#  - php-sockets
+  - php72-php-mbstring
+#  - rh-php72-gettext
+  - php72-php-ldap
+#  - php-openssl
+#  - php-mysqli  #DB=MySQL
+#  - php-oci8    #DB=Oracle
+#  - php-pgsql   #DB=PostgreSQL
+#  - php-zip
+#  - php-common
+  - php72-php-fpm
+#  - php-enchant
+#  - php-process
+  - php72-php-mysqlnd
+  - php72-php-pdo
+
+mysql_packages:
+  - mysql-community-server
+  - mysql-community-devel
+  - mysql-utilities
+  - MySQL-python
+
+zabbix_packages:
+  - zabbix-server-mysql
+  - zabbix-agent
+
+zabbix_frontend_packages:
+  - zabbix-web-mysql-scl
+  - zabbix-apache-conf-scl
+  - zabbix-web-japanese
+
+test_packages:
+  - telnet
+  - vim
+  - open-vm-tools
